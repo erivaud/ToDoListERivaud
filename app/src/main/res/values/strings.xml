@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Ma super ToDo List</string>
+
+    <string name="edit_list">Editer liste</string>
+    <string name="new_list">Nouvelle liste</string>
+    <string name="delete_list">Retirer liste</string>
+
+    <string name="new_item">Nouvel item</string>
+    <string name="edit_item">Editer item</string>
+    <string name="delete_item">Retirer item</string>
+
+    <string name="create_user">Créer compte</string>
+    <string name="login">Se connecter</string>
+    <string name="user_ID">Mon identifiant</string>
+    <string name="user_password">Mon mot de passe</string>
+
+    <string name="first_screen_text">Créez votre compte ou connectez-vous</string>
+    <string name="lists_screen_text">Gérez vos listes</string>
+</resources>
