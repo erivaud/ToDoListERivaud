@@ -22,6 +22,14 @@
         android:text="@string/user_ID"
         android:visibility="visible" />
 
+    <TextView
+        android:id="@+id/listesVides"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Texte si listes vides"
+        android:textAlignment="center"
+        android:visibility="invisible" />
+
     <ListView
         android:id="@+id/listsList"
         android:layout_width="match_parent"
