@@ -1,6 +1,9 @@
 package com.example.todolisterivaud.Model;
 
-public class ToDoList {
+import java.io.Serializable;
+import java.util.Arrays;
+
+public class ToDoList implements Serializable {
 
     private String name;
     private ListItem[] listItems;
@@ -29,5 +32,12 @@ public class ToDoList {
         this.listItems = listItems;
     }
 
+    @Override
+    public String toString() {
+        return "ToDoList{" +
+                "name='" + name + '\'' +
+                ", listItems=" + Arrays.toString(listItems) +
+                '}';
+    }
 
 }

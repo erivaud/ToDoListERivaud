@@ -1,5 +1,7 @@
 package com.example.todolisterivaud.Model;
 
+import java.util.Arrays;
+
 public class Listes {
 
     private String utilisateur;
@@ -44,5 +46,12 @@ public class Listes {
         this.todoListes = todoListes;
     }
 
-
+    @Override
+    public String toString() {
+        return "Listes{" +
+                "utilisateur='" + utilisateur + '\'' +
+                ", password='" + password + '\'' +
+                ", todoListes=" + Arrays.toString(todoListes) +
+                '}';
+    }
 }

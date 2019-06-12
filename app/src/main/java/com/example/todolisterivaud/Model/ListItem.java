@@ -19,5 +19,10 @@ public class ListItem {
         this.elements = elements;
     }
 
-
+    @Override
+    public String toString() {
+        return "ListItem{" +
+                "elements='" + elements + '\'' +
+                '}';
+    }
 }
