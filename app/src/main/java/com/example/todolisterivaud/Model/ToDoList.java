@@ -1,9 +1,12 @@
 package com.example.todolisterivaud.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
-public class ToDoList implements Serializable {
+public class ToDoList implements Parcelable {
 
     private String name;
     private ListItem[] listItems;
@@ -15,6 +18,23 @@ public class ToDoList implements Serializable {
         this.name = name;
         this.listItems = listItems;
     }
+
+    protected ToDoList(Parcel in) {
+        name = in.readString();
+        listItems = in.createTypedArray(ListItem.CREATOR);
+    }
+
+    public static final Creator<ToDoList> CREATOR = new Creator<ToDoList>() {
+        @Override
+        public ToDoList createFromParcel(Parcel in) {
+            return new ToDoList(in);
+        }
+
+        @Override
+        public ToDoList[] newArray(int size) {
+            return new ToDoList[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -40,4 +60,14 @@ public class ToDoList implements Serializable {
                 '}';
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(name);
+        parcel.writeParcelableArray(listItems,0);
+    }
 }

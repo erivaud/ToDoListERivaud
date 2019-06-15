@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.todolisterivaud.Model.Listes;
 import com.example.todolisterivaud.Model.ToDoList;
@@ -60,13 +61,24 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ShowLists.class);
         intent.putExtra("userName", listes.getUtilisateur());
         ToDoList[] toDoLists = listes.getTodoListes();
-        ArrayList<String> toDoListesnames = new ArrayList<String>();
-        for (ToDoList toDoList : toDoLists) {
-            toDoListesnames.add(toDoList.getName());
-        }
-        intent.putExtra("listesNamesArrayList", toDoListesnames);
-        startActivity(intent);
 
+        ArrayList<String> toDoListesNames = new ArrayList<>();
+        ArrayList<String> toDoListesItems = new ArrayList<>();
+        int i = 0;
+        for (ToDoList toDoList : toDoLists) {
+           intent.putExtra("toDoListe" + i , toDoList);
+           i++;
+
+        }
+
+        Toast.makeText(this,""+i,Toast.LENGTH_LONG).show();
+
+        // intent.putExtra("listesNamesArrayList", toDoListesNames);
+     //   intent.putExtra("listesItemsArrayList", toDoListesItems);
+
+
+        startActivity(intent);
+        //Toast.makeText(this,""+toDoLists.toString(),Toast.LENGTH_LONG).show();
         //Toast.makeText(this,""+listes.getUtilisateur(),Toast.LENGTH_LONG).show();
         //TextView userName = this.findViewById(R.id.showListUserName);
         //userName.setVisibility(View.VISIBLE);
