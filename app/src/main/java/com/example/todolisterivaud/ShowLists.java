@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.example.todolisterivaud.Model.ToDoList;
+
 public class ShowLists extends AppCompatActivity {
 
     @Override
@@ -15,23 +17,21 @@ public class ShowLists extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             String intentUserName = intent.getStringExtra("userName");
-            //  ArrayList<String> todoListsNames = intent.getStringArrayListExtra("listesNamesArrayList");
+
+            ToDoList toDoList0 = intent.getParcelableExtra("toDoListe0");
+            ToDoList toDoList1 = intent.getParcelableExtra("toDoListe1");
 
 
-            String todoListsNameConcat = "";
-     /*   for (String todoListsName: todoListsNames) {
-            todoListsNameConcat+=todoListsName+", ";
-        }
-        Toast.makeText(this, "" + todoListsNameConcat, Toast.LENGTH_LONG).show(); */
+       /*Toast.makeText(this, "" + todoListsNameConcat, Toast.LENGTH_LONG).show(); */
 
             TextView userName = this.findViewById(R.id.showListUserName);
+            userName.setText(toDoList0.getName());
 
-
-            if (intentUserName != null) {
+          /*  if (intentUserName != null) {
                 userName.setText(intentUserName);
             } else {
                 userName.setText("empty UserName");
-            }
+            } */
        /* if (todoListsNames !=null){
             TextView listesVides = this.findViewById(R.id.listesVides);
             listesVides.setVisibility(View.VISIBLE);
