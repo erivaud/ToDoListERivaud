@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.todolisterivaud.Model.Listes;
 import com.example.todolisterivaud.Model.ToDoList;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,12 +56,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToListsView(Listes listes){
-        Intent intent = new Intent(this, ShowLists.class);
-        intent.putExtra("userName", listes.getUtilisateur());
+
         ToDoList[] toDoLists = listes.getTodoListes();
 
-        ArrayList<String> toDoListesNames = new ArrayList<>();
-        ArrayList<String> toDoListesItems = new ArrayList<>();
+        Intent intent = new Intent(this, ShowLists.class);
+        intent.putExtra("userName", listes.getUtilisateur());
+
+       // intent.putParcelableArrayListExtra("listes", toDoLists);
+        // ArrayList<String> toDoListesNames = new ArrayList<>();
+        // ArrayList<String> toDoListesItems = new ArrayList<>();
+
         int i = 0;
         for (ToDoList toDoList : toDoLists) {
            intent.putExtra("toDoListe" + i , toDoList);
@@ -71,18 +73,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        Toast.makeText(this,""+i,Toast.LENGTH_LONG).show();
-
-        // intent.putExtra("listesNamesArrayList", toDoListesNames);
-     //   intent.putExtra("listesItemsArrayList", toDoListesItems);
-
+       // Toast.makeText(this,""+i,Toast.LENGTH_LONG).show();
 
         startActivity(intent);
-        //Toast.makeText(this,""+toDoLists.toString(),Toast.LENGTH_LONG).show();
-        //Toast.makeText(this,""+listes.getUtilisateur(),Toast.LENGTH_LONG).show();
-        //TextView userName = this.findViewById(R.id.showListUserName);
-        //userName.setVisibility(View.VISIBLE);
-        //userName.setText(listes.getUtilisateur());
+
     }
 
 }

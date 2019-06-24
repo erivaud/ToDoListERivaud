@@ -1,8 +1,9 @@
 package com.example.todolisterivaud.Model;
 
-import java.util.Arrays;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Listes {
+public class Listes implements Parcelable {
 
     private String utilisateur;
     private String password;
@@ -21,6 +22,25 @@ public class Listes {
         this.password = password;
         this.todoListes = todoListes;
     }
+
+
+    protected Listes(Parcel in) {
+        utilisateur = in.readString();
+        password = in.readString();
+        todoListes = in.createTypedArray(ToDoList.CREATOR);
+    }
+
+    public static final Creator<Listes> CREATOR = new Creator<Listes>() {
+        @Override
+        public Listes createFromParcel(Parcel in) {
+            return new Listes(in);
+        }
+
+        @Override
+        public Listes[] newArray(int size) {
+            return new Listes[size];
+        }
+    };
 
     public String getUtilisateur() {
         return utilisateur;
@@ -51,7 +71,21 @@ public class Listes {
         return "Listes{" +
                 "utilisateur='" + utilisateur + '\'' +
                 ", password='" + password + '\'' +
-                ", todoListes=" + Arrays.toString(todoListes) +
+                ", todoListes=" + todoListes +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        dest.writeString(utilisateur);
+        dest.writeString(password);
+        dest.writeParcelableArray(todoListes, 0);
+
     }
 }

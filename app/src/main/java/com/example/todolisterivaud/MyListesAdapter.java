@@ -1,19 +1,8 @@
 package com.example.todolisterivaud;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+class MyListesAdapter /*extends ArrayAdapter<ToDoList>*/ {
 
-import com.example.todolisterivaud.Model.ToDoList;
-
-import java.util.ArrayList;
-
-class MyListesAdapter extends ArrayAdapter<ToDoList> {
-
-    public MyListesAdapter(Context c) {
+  /*  public MyListesAdapter(Context c) {
         super(c, 0);
     }
 
@@ -33,4 +22,5 @@ class MyListesAdapter extends ArrayAdapter<ToDoList> {
     //TODO : soit implémenter cette méthode, soit trouver une autre solution de parse
     public void addAll(ArrayList<String> todoListsNames) {
     }
+    */
 }

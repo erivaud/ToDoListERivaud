@@ -3,9 +3,12 @@ package com.example.todolisterivaud;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.todolisterivaud.Model.ToDoList;
 
@@ -39,19 +42,23 @@ public class ShowLists extends AppCompatActivity {
 
             ToDoList[] toDoLists = new  ToDoList[]{toDoList0, toDoList1};
 
-
             ArrayList<String> titles = new ArrayList<>(getTitles(toDoLists));
 
+            /*Toast.makeText(this, "" + todoListsNameConcat, Toast.LENGTH_LONG).show(); */
 
+            TextView userName = this.findViewById(R.id.showListUserName);
+            userName.setText("Bienvenue "+ intentUserName + " ! Restez organisé(e) !\n"
+                    + "Ici vous pouvez consulter, modifier et supprimer vos ToDoLists :");
 
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titles);
             listView.setAdapter(arrayAdapter);
 
-
-       /*Toast.makeText(this, "" + todoListsNameConcat, Toast.LENGTH_LONG).show(); */
-
-            TextView userName = this.findViewById(R.id.showListUserName);
-            userName.setText(toDoList0.getName()+ "\n"+toDoList1.getName() + "\n" + toDoLists.length);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                       @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Toast.makeText(getApplicationContext(), "Position : " +position, Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
         }
     }

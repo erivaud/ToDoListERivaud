@@ -2,8 +2,6 @@ package com.example.todolisterivaud.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.io.Serializable;
 import java.util.Arrays;
 
 public class ToDoList implements Parcelable {

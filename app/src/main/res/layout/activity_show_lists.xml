@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".showLists">
+    tools:context=".ShowLists">
 
     <TextView
         android:id="@+id/textView"
@@ -19,6 +19,8 @@
         android:id="@+id/showListUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="@string/user_ID"
         android:visibility="visible" />
 

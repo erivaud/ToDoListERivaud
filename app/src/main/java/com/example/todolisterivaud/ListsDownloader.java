@@ -20,11 +20,9 @@ public class ListsDownloader extends AsyncTask<URL, Integer, Listes> {
        try {
             publishProgress(10);
             Listes downloadedListes = Connects.get(urls[0],mainActivity.getUserIDInput(),mainActivity.getUserPasswordInput());
-            Thread.sleep(5000);
             publishProgress(90);
             return downloadedListes;
         } catch (IOException e) {
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return new Listes();
