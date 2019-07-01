@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("AHHHHHHHHH " + listes.getUtilisateur());
         System.out.println("AHHHHHHHHH " + listes.getPassword());
-       // System.out.println("AHHHHHHHHH " + listes.toString());
+        System.out.println("AHHHHHHHHH " + listes.toString());
 
 
 
@@ -72,21 +72,23 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> titles = new ArrayList<>();
 
         if (toDoLists != null){
-         //   System.out.println("AHHHHHHHHH " +toDoLists.toString());
+            for (ToDoList toDoList : toDoLists) {
+                titles.add(toDoList.getName());
+                 ArrayList<String> toDoListesItems = toDoList.getElements();
+
+                 // Ajout des éléments de listes
+                 intent.putStringArrayListExtra(toDoList.getName(), toDoListesItems);
+
+            }
+            // Ajout des titres des listes seulement
+            intent.putStringArrayListExtra("titres", titles);
+
         } else {
-          //  System.out.println("AHHHHHHHHH " + "c'est vide");
+            System.out.println("AHHHHHHHHH " + "c'est vide");
         }
 
-        for (ToDoList toDoList : toDoLists) {
-            titles.add(toDoList.getName());
-           // ArrayList<String> toDoListesItems = toDoList.getListItems();
 
-            // intent.putStringArrayListExtra(toDoList.getName(), toDoListesItems);
-
-        }
-        intent.putStringArrayListExtra("titres", titles);
-
-        // startActivity(intent);
+        startActivity(intent);
 
     }
 

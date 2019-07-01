@@ -1,45 +1,19 @@
 package com.example.todolisterivaud.Model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class ToDoList implements Parcelable {
+public class ToDoList {
 
     private String name;
-    private ArrayList<String> listItems;
+    private ArrayList<String> elements;
 
     public ToDoList() {
     }
 
-    public ToDoList(String name, ArrayList<String> listItems) {
+    public ToDoList(String name, ArrayList<String> elements) {
         this.name = name;
-        this.listItems = listItems;
+        this.elements = elements;
     }
-    public  ToDoList(String name, String[] listItems){
-        this.name = name;
-        String [] strings = new String [] {"1", "2" };
-        this.listItems = new ArrayList<String>(Arrays.asList(listItems));
-    }
-
-    protected ToDoList(Parcel in) {
-        name = in.readString();
-        listItems = in.createStringArrayList();
-    }
-
-    public static final Creator<ToDoList> CREATOR = new Creator<ToDoList>() {
-        @Override
-        public ToDoList createFromParcel(Parcel in) {
-            return new ToDoList(in);
-        }
-
-        @Override
-        public ToDoList[] newArray(int size) {
-            return new ToDoList[size];
-        }
-    };
 
     public String getName() {
         return name;
@@ -49,31 +23,21 @@ public class ToDoList implements Parcelable {
         this.name = name;
     }
 
-    public ArrayList<String> getListItems() {
-        return listItems;
+    public ArrayList<String> getElements() {
+        return elements;
     }
 
-    public void setListItems(ArrayList<String> listItems) {
-        this.listItems = listItems;
+    public void setElements(ArrayList<String> elements) {
+        this.elements = elements;
     }
 
     @Override
     public String toString() {
         return "ToDoList{" +
                 "name='" + name + '\'' +
-                ", listItems=" + listItems.toString() +
+                ", elements=" + elements +
                 '}';
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int flags) {
-        parcel.writeString(name);
-        parcel.writeStringList(listItems);
-
-    }
 }
