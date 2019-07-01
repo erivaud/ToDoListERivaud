@@ -18,9 +18,7 @@ public class ListsDownloader extends AsyncTask<URL, Integer, Listes> {
     @Override
     protected Listes doInBackground(URL... urls) {
        try {
-            publishProgress(10);
-            Listes downloadedListes = Connects.get(urls[0],mainActivity.getUserIDInput(),mainActivity.getUserPasswordInput());
-            publishProgress(90);
+            Listes downloadedListes = Connects.get(urls[0], mainActivity.getUserIDInput(), mainActivity.getUserPasswordInput());
             return downloadedListes;
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,12 +27,7 @@ public class ListsDownloader extends AsyncTask<URL, Integer, Listes> {
     }
 
     protected void onPostExecute(Listes listes) {
-
          mainActivity.goToListsView(listes);
 
-        //ListView listView = showLists.findViewById((R.id.listsList));
-        /*MyListesAdapter myListesAdapter = new MyListesAdapter(this.showLists);
-        myListesAdapter.addAll(listes);
-        listView.setAdapter(myListesAdapter);*/
     }
 }

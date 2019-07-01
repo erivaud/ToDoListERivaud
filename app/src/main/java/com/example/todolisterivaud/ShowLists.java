@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +29,7 @@ public class ShowLists extends AppCompatActivity implements AdapterView.OnItemCl
         if (intent != null) {
             // Récupérer le nom d'utilisateur
             String intentUserName = intent.getStringExtra("userName");
+
             // Récupérer les titres des listes (la liste des listes)
             ArrayList<String> titles = intent.getStringArrayListExtra("titres");
             // Récupérer les todoListes
@@ -39,11 +39,8 @@ public class ShowLists extends AppCompatActivity implements AdapterView.OnItemCl
                     ArrayList<String> elements = intent.getStringArrayListExtra(titre);
                     ToDoList tdl = new ToDoList(titre, elements);
                     recupToDoLists.add(tdl);
-                   // System.out.println("BEEEEEEEEEEEE tdl " + tdl.toString());
-                    //myListesAdapter.add(tdl);
                 }
             }
-           // System.out.println("BEEEEEEEEEEEE recupToDoLists" + recupToDoLists.toString());
 
             TextView userName = this.findViewById(R.id.showListUserName);
             userName.setText("Bienvenue "+ intentUserName + " ! Restez organisé(e) !\n"
@@ -54,18 +51,7 @@ public class ShowLists extends AppCompatActivity implements AdapterView.OnItemCl
                     R.layout.activity_liste_details,
                     recupToDoLists);
 
-            //MyListesAdapter myListesAdapter = new MyListesAdapter(recupToDoLists);
-            // //recyclerView.setAdapter(myListesAdapter);
-
-
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                    this, android.R.layout.simple_expandable_list_item_1,
-                            titles);
-
-            //listView.setAdapter(arrayAdapter);
             listView.setAdapter(myListesAdapter);
-
-
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                        @Override
@@ -80,19 +66,10 @@ public class ShowLists extends AppCompatActivity implements AdapterView.OnItemCl
                            startActivity(intent);
                         }
                     });
-
         }
     }
     /// marche pas
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getApplicationContext(), "Position : " +position, Toast.LENGTH_SHORT).show();
-   /*     ListView listDeListes = (ListView)parent;
-        ToDoList toDoListSelected = (ToDoList)listDeListes.getAdapter().getItem(position);
-        Intent intent = new Intent(this, ListeDetails.class);
-        intent.putExtra("todoListSelected", toDoListSelected);
-
-        startActivity(intent);*/
-
     }
 }

@@ -60,12 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<ToDoList> toDoLists = listes.getTodoListes();
 
-        /*System.out.println("AHHHHHHHHH " + listes.getUtilisateur());
-        System.out.println("AHHHHHHHHH " + listes.getPassword());
-        System.out.println("AHHHHHHHHH " + listes.toString());*/
-
-
-
         Intent intent = new Intent(this, ShowLists.class);
         intent.putExtra("userName", listes.getUtilisateur());
 
@@ -86,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             System.out.println("AHHHHHHHHH " + "c'est vide");
         }
-
 
         startActivity(intent);
 
