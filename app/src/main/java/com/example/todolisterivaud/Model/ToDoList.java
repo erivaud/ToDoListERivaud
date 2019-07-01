@@ -1,8 +1,9 @@
 package com.example.todolisterivaud.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ToDoList {
+public class ToDoList implements Serializable {
 
     private String name;
     private ArrayList<String> elements;

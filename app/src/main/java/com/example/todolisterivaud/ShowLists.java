@@ -14,18 +14,9 @@ import com.example.todolisterivaud.Model.ToDoList;
 
 import java.util.ArrayList;
 
-public class ShowLists extends AppCompatActivity {
+public class ShowLists extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
      ListView listView;
-
- /*   public ArrayList<String> getTitles(ToDoList[] toDoLists){
-        ArrayList<String> titles = new ArrayList<>();
-        for (ToDoList liste : toDoLists) {
-            titles.add(liste.getName());
-        }
-        return titles;
-    } */
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +24,7 @@ public class ShowLists extends AppCompatActivity {
         setContentView(R.layout.activity_show_lists);
 
         listView = findViewById(R.id.listsList);
+
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -47,32 +39,60 @@ public class ShowLists extends AppCompatActivity {
                     ArrayList<String> elements = intent.getStringArrayListExtra(titre);
                     ToDoList tdl = new ToDoList(titre, elements);
                     recupToDoLists.add(tdl);
+                   // System.out.println("BEEEEEEEEEEEE tdl " + tdl.toString());
+                    //myListesAdapter.add(tdl);
                 }
             }
-            System.out.println("BEEEEEEEEEEEE " + recupToDoLists.toString());
-
-
+           // System.out.println("BEEEEEEEEEEEE recupToDoLists" + recupToDoLists.toString());
 
             TextView userName = this.findViewById(R.id.showListUserName);
             userName.setText("Bienvenue "+ intentUserName + " ! Restez organisé(e) !\n"
                     + "Ici vous pouvez consulter, modifier et supprimer vos ToDoLists :");
 
-            /*myListesAdapter = new MyListesAdapter(toDoLists);
-            recyclerView.setAdapter(myListesAdapter);*/
+            MyListesAdapter myListesAdapter = new MyListesAdapter(
+                    this,
+                    R.layout.activity_liste_details,
+                    recupToDoLists);
+
+            //MyListesAdapter myListesAdapter = new MyListesAdapter(recupToDoLists);
+            // //recyclerView.setAdapter(myListesAdapter);
 
 
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titles);
-            listView.setAdapter(arrayAdapter);
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                    this, android.R.layout.simple_expandable_list_item_1,
+                            titles);
+
+            //listView.setAdapter(arrayAdapter);
+            listView.setAdapter(myListesAdapter);
+
+
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                        @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                             Toast.makeText(getApplicationContext(), "Position : " +position, Toast.LENGTH_SHORT).show();
+
+                           ListView listDeListes = (ListView)parent;
+                           ToDoList toDoListSelected = (ToDoList)listDeListes.getAdapter().getItem(position);
+                           Intent intent = new Intent(view.getContext(), ListeDetails.class);
+                           intent.putExtra("todoListSelected", toDoListSelected);
+
+                           startActivity(intent);
                         }
                     });
 
         }
     }
+    /// marche pas
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(getApplicationContext(), "Position : " +position, Toast.LENGTH_SHORT).show();
+   /*     ListView listDeListes = (ListView)parent;
+        ToDoList toDoListSelected = (ToDoList)listDeListes.getAdapter().getItem(position);
+        Intent intent = new Intent(this, ListeDetails.class);
+        intent.putExtra("todoListSelected", toDoListSelected);
 
+        startActivity(intent);*/
+
+    }
 }

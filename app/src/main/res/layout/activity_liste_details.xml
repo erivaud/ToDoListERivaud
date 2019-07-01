@@ -15,12 +15,27 @@
         android:text="Nom liste"
         android:textSize="20sp" />
 
-    <ListView
+    <TextView
+        android:id="@+id/listeItem1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="item1"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/listeItem2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="item2"
+        android:textSize="15sp" />
+
+
+    <!--<ListView
         android:id="@+id/listViewItems"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="un item"
-        android:textSize="15sp" />
+        android:textSize="15sp" />-->
 
 
 </LinearLayout>

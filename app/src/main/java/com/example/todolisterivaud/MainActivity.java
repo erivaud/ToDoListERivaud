@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<ToDoList> toDoLists = listes.getTodoListes();
 
-        System.out.println("AHHHHHHHHH " + listes.getUtilisateur());
+        /*System.out.println("AHHHHHHHHH " + listes.getUtilisateur());
         System.out.println("AHHHHHHHHH " + listes.getPassword());
-        System.out.println("AHHHHHHHHH " + listes.toString());
+        System.out.println("AHHHHHHHHH " + listes.toString());*/
 
 
 
