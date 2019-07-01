@@ -3,8 +3,8 @@ package com.example.todolisterivaud.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ListItem implements Parcelable {
-
+public class ListItem /*implements Parcelable*/ {
+/*
     private String elements;
 
     public ListItem() {
@@ -54,5 +54,5 @@ public class ListItem implements Parcelable {
     public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeString(elements);
 
-    }
+    }*/
 }

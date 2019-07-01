@@ -2,24 +2,31 @@ package com.example.todolisterivaud.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ToDoList implements Parcelable {
 
     private String name;
-    private ListItem[] listItems;
+    private ArrayList<String> listItems;
 
     public ToDoList() {
     }
 
-    public ToDoList(String name, ListItem[] listItems) {
+    public ToDoList(String name, ArrayList<String> listItems) {
         this.name = name;
         this.listItems = listItems;
+    }
+    public  ToDoList(String name, String[] listItems){
+        this.name = name;
+        String [] strings = new String [] {"1", "2" };
+        this.listItems = new ArrayList<String>(Arrays.asList(listItems));
     }
 
     protected ToDoList(Parcel in) {
         name = in.readString();
-        listItems = in.createTypedArray(ListItem.CREATOR);
+        listItems = in.createStringArrayList();
     }
 
     public static final Creator<ToDoList> CREATOR = new Creator<ToDoList>() {
@@ -42,11 +49,11 @@ public class ToDoList implements Parcelable {
         this.name = name;
     }
 
-    public ListItem[] getListItems() {
+    public ArrayList<String> getListItems() {
         return listItems;
     }
 
-    public void setListItems(ListItem[] listItems) {
+    public void setListItems(ArrayList<String> listItems) {
         this.listItems = listItems;
     }
 
@@ -54,7 +61,7 @@ public class ToDoList implements Parcelable {
     public String toString() {
         return "ToDoList{" +
                 "name='" + name + '\'' +
-                ", listItems=" + Arrays.toString(listItems) +
+                ", listItems=" + listItems.toString() +
                 '}';
     }
 
@@ -66,6 +73,7 @@ public class ToDoList implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeString(name);
-        parcel.writeParcelableArray(listItems,0);
+        parcel.writeStringList(listItems);
+
     }
 }

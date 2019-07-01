@@ -3,11 +3,13 @@ package com.example.todolisterivaud.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class Listes implements Parcelable {
 
     private String utilisateur;
     private String password;
-    private ToDoList[] todoListes;
+    private ArrayList<ToDoList> todoListes;
 
     public Listes() {
     }
@@ -17,17 +19,17 @@ public class Listes implements Parcelable {
         this.password = password;
     }
 
-    public Listes(String utilisateur, String password, ToDoList[] todoListes) {
+    public Listes(String utilisateur, String password, ArrayList<ToDoList> todoListes) {
         this.utilisateur = utilisateur;
         this.password = password;
         this.todoListes = todoListes;
     }
 
 
-    protected Listes(Parcel in) {
+   protected Listes(Parcel in) {
         utilisateur = in.readString();
         password = in.readString();
-        todoListes = in.createTypedArray(ToDoList.CREATOR);
+        todoListes = in.createTypedArrayList(ToDoList.CREATOR);
     }
 
     public static final Creator<Listes> CREATOR = new Creator<Listes>() {
@@ -58,11 +60,11 @@ public class Listes implements Parcelable {
         this.password = password;
     }
 
-    public ToDoList[] getTodoListes() {
+    public ArrayList<ToDoList> getTodoListes() {
         return todoListes;
     }
 
-    public void setTodoListes(ToDoList[] todoListes) {
+    public void setTodoListes(ArrayList<ToDoList> todoListes) {
         this.todoListes = todoListes;
     }
 
@@ -71,11 +73,23 @@ public class Listes implements Parcelable {
         return "Listes{" +
                 "utilisateur='" + utilisateur + '\'' +
                 ", password='" + password + '\'' +
-                ", todoListes=" + todoListes +
+                ", todoListes=" + todoListes.toString() +
                 '}';
     }
 
     @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(utilisateur);
+        parcel.writeString(password);
+        parcel.writeParcelable((Parcelable) todoListes,0);
+    }
+
+ /*   @Override
     public int describeContents() {
         return 0;
     }
@@ -87,5 +101,5 @@ public class Listes implements Parcelable {
         dest.writeString(password);
         dest.writeParcelableArray(todoListes, 0);
 
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
 package com.example.todolisterivaud;
 
-class MyListesAdapter /*extends ArrayAdapter<ToDoList>*/ {
+class MyListesAdapter {
+
 
   /*  public MyListesAdapter(Context c) {
         super(c, 0);

@@ -11,6 +11,7 @@ import com.example.todolisterivaud.Model.ToDoList;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,25 +58,35 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToListsView(Listes listes){
 
-        ToDoList[] toDoLists = listes.getTodoListes();
+        ArrayList<ToDoList> toDoLists = listes.getTodoListes();
+
+        System.out.println("AHHHHHHHHH " + listes.getUtilisateur());
+        System.out.println("AHHHHHHHHH " + listes.getPassword());
+       // System.out.println("AHHHHHHHHH " + listes.toString());
+
+
 
         Intent intent = new Intent(this, ShowLists.class);
         intent.putExtra("userName", listes.getUtilisateur());
 
-       // intent.putParcelableArrayListExtra("listes", toDoLists);
-        // ArrayList<String> toDoListesNames = new ArrayList<>();
-        // ArrayList<String> toDoListesItems = new ArrayList<>();
+        ArrayList<String> titles = new ArrayList<>();
 
-        int i = 0;
-        for (ToDoList toDoList : toDoLists) {
-           intent.putExtra("toDoListe" + i , toDoList);
-           i++;
-
+        if (toDoLists != null){
+         //   System.out.println("AHHHHHHHHH " +toDoLists.toString());
+        } else {
+          //  System.out.println("AHHHHHHHHH " + "c'est vide");
         }
 
-       // Toast.makeText(this,""+i,Toast.LENGTH_LONG).show();
+        for (ToDoList toDoList : toDoLists) {
+            titles.add(toDoList.getName());
+           // ArrayList<String> toDoListesItems = toDoList.getListItems();
 
-        startActivity(intent);
+            // intent.putStringArrayListExtra(toDoList.getName(), toDoListesItems);
+
+        }
+        intent.putStringArrayListExtra("titres", titles);
+
+        // startActivity(intent);
 
     }
 

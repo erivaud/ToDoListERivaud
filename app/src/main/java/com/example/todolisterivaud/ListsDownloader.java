@@ -31,6 +31,7 @@ public class ListsDownloader extends AsyncTask<URL, Integer, Listes> {
     protected void onPostExecute(Listes listes) {
 
          mainActivity.goToListsView(listes);
+         System.out.println(listes.toString());
 
 
         //ListView listView = showLists.findViewById((R.id.listsList));
